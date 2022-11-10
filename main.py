@@ -1,18 +1,18 @@
 import argparse
 
+def validateInput(array):
+	for i in array:
+		if not i.isdigit():
+			return "The numbers in the input are not all integers."
+		if int(i) > 10000: 
+			return "At least one of the input integers is greater than 10000."
+
+		return True 
+
 class BST:
 	def __init__(self, arr):
 		self.arr = arr
 		self.len = len(arr)
-
-	def validateInput(self):
-		for i in self.arr:
-			if not isinstance(i, int):
-				return False 
-			if i >= 10000: 
-				return False 
-
-			return True 
 
 	def check(self):
 		for i in range(self.len):
@@ -83,22 +83,28 @@ if __name__ == "__main__":
 
 	with open(file_name, 'r') as f:
 		arr = f.read()
-		arr = list(map(int, arr.strip().split()))
+		inputValid = validateInput(arr.split())
 
-		bst = BST(arr)
+		if inputValid == True:
 
-		if bst.check():
-			print("valid")
+			arr = list(map(int, arr.strip().split()))
+			bst = BST(arr)
 
-			if args.top: print("top\t" + " ".join(str(i) for i in bst.top()))
-			if args.bottom: print("bottom\t" + " ".join(str(i) for i in bst.bottom()))
-			if args.right: print("right\t" + " ".join(str(i) for i in bst.right()))
-			if args.left: print("left\t" + " ".join(str(i) for i in bst.left()))
-			if args.diameter: print("diameter\t" + " ".join(str(i) for i in bst.diameter()))
-			if args.height: print("height : {}".format(bst.height()))
+			if bst.check():
+				print("valid")
 
-		else:
-			print("invalid")
+				if args.top: print("top\t" + " ".join(str(i) for i in bst.top()))
+				if args.bottom: print("bottom\t" + " ".join(str(i) for i in bst.bottom()))
+				if args.right: print("right\t" + " ".join(str(i) for i in bst.right()))
+				if args.left: print("left\t" + " ".join(str(i) for i in bst.left()))
+				if args.diameter: print("diameter\t" + " ".join(str(i) for i in bst.diameter()))
+				if args.height: print("height : {}".format(bst.height()))
+
+			else:
+				print("invalid")
+
+		else: 
+			print(inputValid)
 
 
 
