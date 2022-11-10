@@ -5,6 +5,15 @@ class BST:
 		self.arr = arr
 		self.len = len(arr)
 
+	def validateInput(self):
+		for i in self.arr:
+			if not isinstance(i, int):
+				return False 
+			if i >= 10000: 
+				return False 
+
+			return True 
+
 	def check(self):
 		for i in range(self.len):
 			x = 2*i + 1
