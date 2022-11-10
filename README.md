@@ -46,6 +46,7 @@ Vinuri - Implemented the basic functionalities
 
 To Do 
 <ul>
+<li> Arguments should be integers, no floats etc</li>
 <li>Check argument validity</li>
 <li>File not found error</li>
 <li>Check input validity - each node should be less than x</li>
