@@ -7,14 +7,14 @@ class BST:
 		self.tree = [None for i in range(self.len)]
 
 	def complete(self):
+		if self.height() > 10:
+			return False
 		if self.len != (2 ** self.height() - 1):
 			return False
 
 		return True
 
 	def check(self):
-		if self.height() > 10:
-			return False
 		for i in range(self.len):
 			val = self.arr[i]
 			pos = 0
