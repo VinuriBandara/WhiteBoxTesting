@@ -6,14 +6,14 @@ class BST:
 		self.len = len(arr)
 
 	def complete(self):
+		if self.height() > 10:
+			return False
 		if self.len != (2 ** self.height() - 1):
 			return False
 
 		return True
 
 	def check(self):
-		if self.height() > 10:
-			return False
 		for i in range(self.len):
 			x = 2*i + 1
 			y = 2*i + 2
@@ -69,9 +69,9 @@ if __name__ == "__main__":
 	def validateInput(array):
 		for i in array:
 			if not i.isdigit():
-				return "The numbers in the input are not all integers."
+				return "[ERROR] All provided items should be integers!"
 			if int(i) > 10000: 
-				return "At least one of the input integers is greater than 10000."
+				return "[ERROR] Provided numbers should not exceed 10000!"
 
 		return True 
 
@@ -111,7 +111,7 @@ if __name__ == "__main__":
 				else:
 					print("invalid")
 			else:
-				print("invalid")
+				print("[ERROR] The provided list of numbers should build a complete binary tree!")
 
 		else: 
 			print(inputValid)
