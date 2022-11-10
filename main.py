@@ -1,20 +1,19 @@
 import argparse
 
-def validateInput(array):
-	for i in array:
-		if not i.isdigit():
-			return "The numbers in the input are not all integers."
-		if int(i) > 10000: 
-			return "At least one of the input integers is greater than 10000."
-
-	return True 
-
 class BST:
 	def __init__(self, arr):
 		self.arr = arr
 		self.len = len(arr)
 
+	def complete(self):
+		if self.len != (2 ** self.height() - 1):
+			return False
+
+		return True
+
 	def check(self):
+		if self.height() > 10:
+			return False
 		for i in range(self.len):
 			x = 2*i + 1
 			y = 2*i + 2
@@ -23,7 +22,7 @@ class BST:
 			if y < self.len and self.arr[i] > self.arr[y]:
 				return False
 
-			return True
+		return True
 
 	def top(self):
 		left = self.left()
@@ -32,7 +31,6 @@ class BST:
 		top = left[::-1] + right[1:]
 
 		return top
-
 
 	def left(self):
 		i = 0
@@ -68,6 +66,15 @@ class BST:
 
 if __name__ == "__main__":
 
+	def validateInput(array):
+		for i in array:
+			if not i.isdigit():
+				return "The numbers in the input are not all integers."
+			if int(i) > 10000: 
+				return "At least one of the input integers is greater than 10000."
+
+		return True 
+
 	parser = argparse.ArgumentParser(description='BST.', add_help=False)
 	parser.add_argument('--file', '-f', type=str, required=True)	
 	parser.add_argument('--top', '-t', action='store_true')
@@ -90,16 +97,19 @@ if __name__ == "__main__":
 			arr = list(map(int, arr.strip().split()))
 			bst = BST(arr)
 
-			if bst.check():
-				print("valid")
+			if bst.complete():
+				if bst.check():
+					print("valid")
 
-				if args.top: print("top\t" + " ".join(str(i) for i in bst.top()))
-				if args.bottom: print("bottom\t" + " ".join(str(i) for i in bst.bottom()))
-				if args.right: print("right\t" + " ".join(str(i) for i in bst.right()))
-				if args.left: print("left\t" + " ".join(str(i) for i in bst.left()))
-				if args.diameter: print("diameter\t" + " ".join(str(i) for i in bst.diameter()))
-				if args.height: print("height : {}".format(bst.height()))
+					if args.top: print("top\t" + " ".join(str(i) for i in bst.top()))
+					if args.bottom: print("bottom\t" + " ".join(str(i) for i in bst.bottom()))
+					if args.right: print("right\t" + " ".join(str(i) for i in bst.right()))
+					if args.left: print("left\t" + " ".join(str(i) for i in bst.left()))
+					if args.diameter: print("diameter\t" + " ".join(str(i) for i in bst.diameter()))
+					if args.height: print("height : {}".format(bst.height()))
 
+				else:
+					print("invalid")
 			else:
 				print("invalid")
 
