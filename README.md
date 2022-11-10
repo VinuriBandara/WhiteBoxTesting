@@ -34,9 +34,23 @@ Specification by : DA SILVA NERI MARQUES CARVALHO RICARDO FILIPE , MARTINS ROMAO
 <li><span>The commands that are passed on the command line must be the same as in the specification, or the program will not function correctly.</span></li>
 </ul></div>
     
-    
-    
-    
+</div>
+
+
+<hr>
+
+<div>
+<h2> Implementation </h2>
+
+Vinuri - Implemented the basic functionalities
+
+To Do 
+<ul>
+<li>Check argument validity</li>
+<li>Check input validity - each node should be less than x</li>
+<li>Check if the binary tree is complete using the height and the number of elements</li>
+</ul>
+
 </div>
 
 
