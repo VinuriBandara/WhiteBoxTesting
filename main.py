@@ -7,7 +7,7 @@ def validateInput(array):
 		if int(i) > 10000: 
 			return "At least one of the input integers is greater than 10000."
 
-		return True 
+	return True 
 
 class BST:
 	def __init__(self, arr):
