@@ -4,6 +4,7 @@ class BST:
 	def __init__(self, arr):
 		self.arr = arr
 		self.len = len(arr)
+		self.tree = [None for i in range(self.len)]
 
 	def complete(self):
 		if self.len != (2 ** self.height() - 1):
@@ -15,12 +16,21 @@ class BST:
 		if self.height() > 10:
 			return False
 		for i in range(self.len):
-			x = 2*i + 1
-			y = 2*i + 2
-			if x < self.len and self.arr[i] < self.arr[x]:
+			val = self.arr[i]
+			pos = 0
+
+			while pos < self.len and self.tree[pos]:
+				if val > self.tree[pos]:
+					pos = 2*pos+2
+				elif val < self.tree[pos]:
+					pos = 2*pos + 1
+				else:
+					return False
+
+			if pos != i:
 				return False
-			if y < self.len and self.arr[i] > self.arr[y]:
-				return False
+
+			self.tree[pos] = val
 
 		return True
 
@@ -69,9 +79,9 @@ if __name__ == "__main__":
 	def validateInput(array):
 		for i in array:
 			if not i.isdigit():
-				return "The numbers in the input are not all integers."
+				return "[ERROR] All provided items should be integers!"
 			if int(i) > 10000: 
-				return "At least one of the input integers is greater than 10000."
+				return "[ERROR] Provided numbers should not exceed 10000!"
 
 		return True 
 
@@ -101,17 +111,17 @@ if __name__ == "__main__":
 				if bst.check():
 					print("valid")
 
-					if args.top: print("top\t" + " ".join(str(i) for i in bst.top()))
-					if args.bottom: print("bottom\t" + " ".join(str(i) for i in bst.bottom()))
-					if args.right: print("right\t" + " ".join(str(i) for i in bst.right()))
-					if args.left: print("left\t" + " ".join(str(i) for i in bst.left()))
-					if args.diameter: print("diameter\t" + " ".join(str(i) for i in bst.diameter()))
-					if args.height: print("height : {}".format(bst.height()))
+					if args.top: print("top: " + " ".join(str(i) for i in bst.top()))
+					if args.bottom: print("bottom: " + " ".join(str(i) for i in bst.bottom()))
+					if args.right: print("right: " + " ".join(str(i) for i in bst.right()))
+					if args.left: print("left: " + " ".join(str(i) for i in bst.left()))
+					if args.diameter: print("diameter: " + " ".join(str(i) for i in bst.diameter()))
+					if args.height: print("height: {}".format(bst.height()))
 
 				else:
 					print("invalid")
 			else:
-				print("invalid")
+				print("[ERROR] The provided list of numbers should build a complete binary tree!")
 
 		else: 
 			print(inputValid)
