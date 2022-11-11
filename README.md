@@ -44,9 +44,10 @@ Specification by : DA SILVA NERI MARQUES CARVALHO RICARDO FILIPE , MARTINS ROMAO
 
 Vinuri - Implemented the basic functionalities
 
+Michelle - Implemented input validation checks and corresponding error messages 
+
 To Do 
 <ul>
-<li>File not found error</li>
 </ul>
 
 </div>
