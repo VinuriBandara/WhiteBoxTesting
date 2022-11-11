@@ -98,33 +98,36 @@ if __name__ == "__main__":
 
 	file_name = args.file
 
-	with open(file_name, 'r') as f:
-		arr = f.read()
-		inputValid = validateInput(arr.split())
+	try:
+		with open(file_name, 'r') as f:
+			arr = f.read()
+			inputValid = validateInput(arr.split())
 
-		if inputValid == True:
+			if inputValid == True:
 
-			arr = list(map(int, arr.strip().split()))
-			bst = BST(arr)
+				arr = list(map(int, arr.strip().split()))
+				bst = BST(arr)
 
-			if bst.complete():
-				if bst.check():
-					print("valid")
+				if bst.complete():
+					if bst.check():
+						print("valid")
 
-					if args.top: print("top: " + " ".join(str(i) for i in bst.top()))
-					if args.bottom: print("bottom: " + " ".join(str(i) for i in bst.bottom()))
-					if args.right: print("right: " + " ".join(str(i) for i in bst.right()))
-					if args.left: print("left: " + " ".join(str(i) for i in bst.left()))
-					if args.diameter: print("diameter: " + " ".join(str(i) for i in bst.diameter()))
-					if args.height: print("height: {}".format(bst.height()))
+						if args.top: print("top: " + " ".join(str(i) for i in bst.top()))
+						if args.bottom: print("bottom: " + " ".join(str(i) for i in bst.bottom()))
+						if args.right: print("right: " + " ".join(str(i) for i in bst.right()))
+						if args.left: print("left: " + " ".join(str(i) for i in bst.left()))
+						if args.diameter: print("diameter: " + " ".join(str(i) for i in bst.diameter()))
+						if args.height: print("height: {}".format(bst.height()))
 
+					else:
+						print("invalid")
 				else:
-					print("invalid")
-			else:
-				print("[ERROR] The provided list of numbers should build a complete binary tree!")
+					print("[ERROR] The provided list of numbers should build a complete binary tree!")
 
-		else: 
-			print(inputValid)
+			else: 
+				print(inputValid)
+	except(FileNotFoundError):
+		print("[ERROR] The given input file was not found!")
 
 
 
